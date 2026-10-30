@@ -1,0 +1,3 @@
+from django.urls import path
+from . import views
+urlpatterns=[path('',views.home,name='home'),path('orcamentos/criar/',views.submit_quote,name='submit_quote'),path('orcamentos/<uuid:code>/',views.quote_detail,name='quote_detail'),path('orcamentos/<uuid:code>/converter/',views.convert_quote,name='convert_quote'),path('pedidos/<uuid:code>/',views.order_status,name='order_status'),path('painel/',views.dashboard,name='dashboard'),path('api/v1/produtos/',views.api_products,name='api_products'),path('api/v1/calcular-preco/',views.api_calculate,name='api_calculate'),path('api/v1/pedidos/<uuid:code>/status/',views.api_status,name='api_status')]

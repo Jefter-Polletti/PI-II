@@ -1,0 +1,17 @@
+from django import forms
+class QuoteForm(forms.Form):
+    name=forms.CharField(max_length=150,label='Nome')
+    email=forms.EmailField(label='E-mail')
+    phone=forms.CharField(max_length=30,required=False,label='Telefone')
+    zipcode=forms.CharField(max_length=9,required=False,label='CEP')
+    street=forms.CharField(max_length=150,required=False,label='Rua')
+    number=forms.CharField(max_length=20,required=False,label='Número')
+    neighborhood=forms.CharField(max_length=100,required=False,label='Bairro')
+    city=forms.CharField(max_length=100,required=False,label='Cidade')
+    state=forms.CharField(max_length=2,required=False,label='UF')
+    product_id=forms.IntegerField(min_value=1,widget=forms.HiddenInput)
+    width_cm=forms.DecimalField(min_value=0.01,max_digits=9,decimal_places=2,widget=forms.HiddenInput)
+    height_cm=forms.DecimalField(min_value=0.01,max_digits=9,decimal_places=2,widget=forms.HiddenInput)
+    quantity=forms.IntegerField(min_value=1,widget=forms.HiddenInput)
+    material=forms.ChoiceField(choices=[('papel','Papel'),('vinil','Vinil'),('tecido','Tecido')],widget=forms.HiddenInput)
+    finish=forms.ChoiceField(choices=[('fosco','Fosco'),('brilho','Brilho'),('sem','Sem acabamento')],widget=forms.HiddenInput)

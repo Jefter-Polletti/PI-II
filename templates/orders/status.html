@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<h2>Acompanhamento do pedido</h2><p>Código: {{ order.quote.code }}</p><p>Status atual: <strong>{{ order.get_status_display }}</strong></p><p>Atualizado em: {{ order.updated_at|date:'d/m/Y H:i' }}</p>{% endblock %}

@@ -1,0 +1,3 @@
+{% load static %}
+<!DOCTYPE html><html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{% block title %}Mundo das Etiquetas{% endblock %}</title><link rel="stylesheet" href="{% static 'css/site.css' %}"></head>
+<body><a class="skip" href="#principal">Pular para o conteúdo</a><header><div class="container"><h1><a href="/">Mundo das Etiquetas</a></h1><nav aria-label="Navegação"><a href="/">Orçamentos</a><a href="/admin/">Administração</a></nav></div></header><main id="principal" class="container">{% block content %}{% endblock %}</main><footer class="container">Sistema de orçamentos personalizados — versão acadêmica</footer></body></html>

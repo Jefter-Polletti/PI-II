@@ -1,0 +1,19 @@
+{% extends 'base.html' %}{% load static %}{% block content %}
+<h2>Solicitar orçamento</h2><p>Configure dimensões, quantidade e acabamento para visualizar uma estimativa de preço.</p>
+{% if error %}<p role="alert" class="error">{{ error }}</p>{% endif %}
+{% if form.errors %}<div role="alert" class="error">Verifique os campos informados: {{ form.errors }}</div>{% endif %}
+<section class="card"><h3>1. Personalização</h3><div class="grid">
+<label for="product_id">Produto</label><select id="product_id" required><option value="">Selecione</option>{% for p in products %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}</select>
+<label for="width_cm">Largura (cm)</label><input id="width_cm" type="number" min="0.01" step="0.01" value="5">
+<label for="height_cm">Altura (cm)</label><input id="height_cm" type="number" min="0.01" step="0.01" value="3">
+<label for="quantity">Quantidade</label><input id="quantity" type="number" min="1" step="1" value="100">
+<label for="material">Material</label><select id="material"><option value="papel">Papel</option><option value="vinil">Vinil</option><option value="tecido">Tecido</option></select>
+<label for="finish">Acabamento</label><select id="finish"><option value="fosco">Fosco</option><option value="brilho">Brilho</option><option value="sem">Sem acabamento</option></select></div>
+<button id="calculate" type="button">Calcular preço</button><p id="result" role="status" aria-live="polite"></p></section>
+<section class="card"><h3>2. Dados do cliente</h3><form id="quote-form" action="{% url 'submit_quote' %}" method="post">{% csrf_token %}
+<div class="grid"><label for="name">Nome completo</label><input name="name" id="name" required maxlength="150"><label for="email">E-mail</label><input name="email" id="email" type="email" required><label for="phone">Telefone</label><input name="phone" id="phone"><label for="zipcode">CEP</label><input name="zipcode" id="zipcode" maxlength="9" inputmode="numeric"><label for="street">Rua</label><input name="street" id="street"><label for="number">Número</label><input name="number" id="number"><label for="neighborhood">Bairro</label><input name="neighborhood" id="neighborhood"><label for="city">Cidade</label><input name="city" id="city"><label for="state">UF</label><input name="state" id="state" maxlength="2"></div>
+{% for field in form.hidden_fields %}{{ field }}{% endfor %}
+{% if not form %}<input type="hidden" name="product_id"><input type="hidden" name="width_cm"><input type="hidden" name="height_cm"><input type="hidden" name="quantity"><input type="hidden" name="material"><input type="hidden" name="finish">{% endif %}
+<button type="submit">Gerar orçamento</button></form></section>
+<script src="{% static 'js/site.js' %}" defer></script>
+{% endblock %}
